@@ -3,7 +3,7 @@ resources:
   pipelines:
     analytics_dlt_pipeline:
       name: "${bundle.environment}_analytics_pipeline"
-      target: "${var.catalog}.${var.schema}"
+      target: "${var.catalog}_${bundle.environment}.${var.schema}"
 
       # Pipeline configuration
       libraries:
@@ -33,7 +33,7 @@ resources:
             - on-flow-failure
 
       # Catalog settings
-      catalog: ${var.catalog}
+      catalog: ${var.catalog}_${bundle.environment}
 
       # Photon enabled
       photon: true
