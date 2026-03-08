@@ -28,4 +28,5 @@ resources:
       # Pipeline configuration
       configuration:
         pipeline.deployment.kind: "INCREMENTAL"
-        storage_credential: satdataaccess
+        catalog_base_nm: ${var.catalog}
+        env: ${bundle.target}
