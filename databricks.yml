@@ -4,7 +4,7 @@ bundle:
 
 include:
   - resources/*.yml
-  - config/dev.yml
+
 
 # Variables for the bundle
 variables:
@@ -26,6 +26,7 @@ targets:
     variables:
       catalog: tpccopy001_dev
       schema: poc
+      notification_email: pula.sateesh@gmail.com
 
   # Staging environment
   staging:
