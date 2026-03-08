@@ -10,8 +10,10 @@ resources:
         - notebook:
             path: ../src/pipelines/product_analytics_dlt.py
 
-      # Serverless compute
-      serverless: true
+      # Use existing classic compute
+      clusters:
+        - label: default
+          existing_cluster_id: 0308-135324-bthtuayo
 
       # Development vs Production settings
       development: ${bundle.target == 'dev'}
@@ -19,3 +21,8 @@ resources:
 
       # Catalog settings
       catalog: ${var.catalog}
+
+      # Pipeline configuration
+      configuration:
+        pipeline.deployment.kind: "INCREMENTAL"
+        storage_credential: satdataaccess
