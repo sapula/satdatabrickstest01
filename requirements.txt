@@ -1,6 +1,7 @@
 # Databricks requirements
 dlt>=0.3.0
 pyspark>=3.4.0
+black[jupyter]
 
 # Data processing
 pandas>=2.0.0
