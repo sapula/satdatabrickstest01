@@ -9,6 +9,7 @@
 
 import dlt
 from pyspark.sql.functions import col, sum as _sum, max as _max, date_sub
+from pyspark.sql.functions import lit
 
 # COMMAND ----------
 
