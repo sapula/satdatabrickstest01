@@ -21,7 +21,7 @@ targets:
     mode: development
     default: true
     workspace:
-      host: ${var.databricks_host}
+      host: https://adb-7405611676912319.19.azuredatabricks.net/
     variables:
       catalog: ${var.catalog}_dev
       schema: ${var.schema}
