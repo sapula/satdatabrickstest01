@@ -14,11 +14,10 @@ resources:
       clusters:
         - label: default
           num_workers: 2
-          node_type_id: i3.xlarge
-          spark_version: 13.3.x-scala2.12
-          spark_conf:
-            spark.databricks.delta.preview.enabled: "true"
-            spark.databricks.delta.properties.defaults.enableChangeDataFeed: "true"
+          node_type_id: Standard_D4ds_v5
+          spark_version: 17.3.x-scala2.13
+          autotermination_minutes: 5
+
 
       # Development vs Production settings
       development: ${bundle.target == 'dev'}
@@ -33,7 +32,7 @@ resources:
       # Email notifications
       notifications:
         - email_recipients:
-            - ${var.notification_email}
+            - pula.sateesh@gmail.com
           alerts:
             - on-update-failure
             - on-update-fatal-failure
