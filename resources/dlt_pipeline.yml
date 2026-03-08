@@ -1,24 +1,21 @@
 # DLT Pipeline Configuration
 resources:
-  jobs:
+  pipelines:
     analytics_dlt_pipeline:
       name: analytics_dlt_pipeline
-      tasks:
-        - task_key:  analytics_dlt_pipeline_task
-          notebook_task:
-             notebook_path: ../src/pipelines/product_analytics_dlt.py
-             base_parameters:
-              catalog_base_nm: ${var.catalog}
-              schema: ${var.schema}           
+      target: "${var.schema}"
 
-    # Serverless compute
-    serverless: "true"
+      # Pipeline configuration
+      libraries:
+        - notebook:
+            path: ../src/pipelines/product_analytics_dlt.py
 
-    # Development vs Production settings
-    development: ${bundle.target == 'dev'}
-    continuous: "false"
+      # Serverless compute
+      serverless: true
 
+      # Development vs Production settings
+      development: ${bundle.target == 'dev'}
+      continuous: false
 
-
-    # Catalog settings
-    catalog: ${var.catalog}_${bundle.environment}
+      # Catalog settings
+      catalog: ${var.catalog}
