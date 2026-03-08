@@ -10,10 +10,12 @@ include:
 variables:
   catalog:
     description: "Catalog name"
-    default: tpccopy001
+    default: tpccopy001_dev
   schema:
     description: "Schema name"
     default: poc
+  notification_email:
+    default: pula.sateesh@gmail.com
 
 # Deployment targets
 targets:
@@ -26,7 +28,7 @@ targets:
     variables:
       catalog: tpccopy001_dev
       schema: poc
-      notification_email: pula.sateesh@gmail.com
+      notification_email: ${var.notification_email}
 
   # Staging environment
   staging:
