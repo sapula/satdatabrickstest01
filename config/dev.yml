@@ -5,6 +5,8 @@ environment: dev
 workspace:
   host: https://adb-7405611676912319.19.azuredatabricks.net/
 
+databricks_host: https://adb-7405611676912319.19.azuredatabricks.net/
+
 # Catalog and schema
 catalog: tpccopy001
 schema: poc
