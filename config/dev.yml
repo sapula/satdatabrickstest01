@@ -3,7 +3,7 @@ environment: dev
 
 # Databricks workspace settings
 workspace:
-  profile: DEFAULT
+  host: https://adb-7405611676912319.19.azuredatabricks.net/
 
 # Catalog and schema
 catalog: tpccopy001
