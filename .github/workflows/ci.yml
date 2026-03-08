@@ -63,5 +63,5 @@ jobs:
       - name: Validate bundle configuration
         run: databricks bundle validate -t dev
         env:
-          DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
+          DATABRICKS_HOST: ${{ vars.DATABRICKS_HOST }}
           DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
