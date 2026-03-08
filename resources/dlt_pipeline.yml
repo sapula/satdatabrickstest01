@@ -1,0 +1,50 @@
+# DLT Pipeline Configuration
+resources:
+  pipelines:
+    analytics_dlt_pipeline:
+      name: "${bundle.environment}_analytics_pipeline"
+      target: "${var.catalog}.${var.schema}"
+
+      # Pipeline configuration
+      libraries:
+        - notebook:
+            path: ../src/pipelines/product_analytics_dlt.py
+
+      # Cluster configuration
+      clusters:
+        - label: default
+          num_workers: 2
+          node_type_id: i3.xlarge
+          spark_version: 13.3.x-scala2.12
+          spark_conf:
+            spark.databricks.delta.preview.enabled: "true"
+            spark.databricks.delta.properties.defaults.enableChangeDataFeed: "true"
+
+      # Development vs Production settings
+      development: ${bundle.target == 'dev'}
+      continuous: false
+
+      # Channel (preview or current)
+      channel: CURRENT
+
+      # Edition (CORE, PRO, ADVANCED)
+      edition: ADVANCED
+
+      # Email notifications
+      notifications:
+        - email_recipients:
+            - ${var.notification_email}
+          alerts:
+            - on-update-failure
+            - on-update-fatal-failure
+            - on-flow-failure
+
+      # Catalog settings
+      catalog: ${var.catalog}
+
+      # Photon enabled
+      photon: true
+
+      # Data quality expectations
+      configuration:
+        pipeline.deployment.kind: "INCREMENTAL"

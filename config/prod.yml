@@ -1,0 +1,30 @@
+# Production Environment Configuration
+environment: prod
+
+# Databricks workspace settings
+workspace:
+  profile: PRODUCTION
+
+# Catalog and schema
+catalog: tpccopy001
+schema: poc
+
+# Pipeline settings
+pipeline:
+  num_workers: 4
+  node_type_id: i3.2xlarge
+  continuous: true
+  development: false
+
+# Notifications
+notification_email: data-platform-prod@example.com
+
+# Service principal for automated deployments
+service_principal_id: "${DATABRICKS_SERVICE_PRINCIPAL_ID}"
+
+# Feature flags
+features:
+  enable_data_quality_checks: true
+  enable_photon: true
+  enable_cdc: true
+  enable_auto_optimize: true

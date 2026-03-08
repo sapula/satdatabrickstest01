@@ -1,0 +1,29 @@
+# Staging Environment Configuration
+environment: staging
+
+# Databricks workspace settings
+workspace:
+  profile: STAGING
+
+# Catalog and schema
+catalog: tpccopy001_staging
+schema: poc
+
+# Pipeline settings
+pipeline:
+  num_workers: 2
+  node_type_id: i3.xlarge
+  continuous: false
+  development: false
+
+# Notifications
+notification_email: data-platform-staging@example.com
+
+# Service principal for automated deployments
+service_principal_id: "${DATABRICKS_SERVICE_PRINCIPAL_ID}"
+
+# Feature flags
+features:
+  enable_data_quality_checks: true
+  enable_photon: true
+  enable_cdc: true

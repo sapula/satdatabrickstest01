@@ -1,0 +1,57 @@
+# Databricks Asset Bundle Configuration
+bundle:
+  name: satdatabrickstest01
+
+include:
+  - resources/*.yml
+
+# Variables for the bundle
+variables:
+  catalog:
+    description: "Catalog name"
+    default: tpccopy001
+  schema:
+    description: "Schema name"
+    default: poc
+
+# Deployment targets
+targets:
+  # Development environment
+  dev:
+    mode: development
+    default: true
+    workspace:
+      host: ${var.databricks_host}
+    variables:
+      catalog: ${var.catalog}_dev
+      schema: ${var.schema}
+
+  # Staging environment
+  staging:
+    mode: production
+    workspace:
+      host: ${var.databricks_host}
+      root_path: /Workspace/.bundle/${bundle.name}/staging
+    variables:
+      catalog: ${var.catalog}_staging
+      schema: ${var.schema}
+    run_as:
+      service_principal_name: ${var.service_principal_id}
+
+  # Production environment
+  prod:
+    mode: production
+    workspace:
+      host: ${var.databricks_host}
+      root_path: /Workspace/.bundle/${bundle.name}/prod
+    variables:
+      catalog: ${var.catalog}
+      schema: ${var.schema}
+    run_as:
+      service_principal_name: ${var.service_principal_id}
+
+# Artifact configuration
+artifacts:
+  default:
+    type: whl
+    path: .
