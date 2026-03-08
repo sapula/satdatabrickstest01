@@ -20,7 +20,7 @@ pipeline:
 notification_email: pula.sateesh@gmail.com
 
 # Service principal (leave empty for dev, uses user auth)
-service_principal_id: ""
+service_principal_id: "b46033f9-1344-49b6-b99a-cdd225f309e6"
 
 # Feature flags
 features:
