@@ -6,18 +6,18 @@ workspace:
   profile: DEFAULT
 
 # Catalog and schema
-catalog: tpccopy001_dev
+catalog: tpccopy001
 schema: poc
 
 # Pipeline settings
 pipeline:
   num_workers: 1
-  node_type_id: i3.xlarge
+  node_type_id: Standard_D4ds_v5
   continuous: false
   development: true
 
 # Notifications
-notification_email: dev-team@example.com
+notification_email: pula.sateesh@gmail.com
 
 # Service principal (leave empty for dev, uses user auth)
 service_principal_id: ""

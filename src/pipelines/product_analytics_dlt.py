@@ -3,6 +3,7 @@
 # MAGIC # Product Analytics DLT Pipeline
 # MAGIC
 # MAGIC This pipeline creates tables for product analytics based on orders, lineitem, and part data.
+# MAGIC This is claude generated code.
 
 # COMMAND ----------
 
