@@ -12,7 +12,7 @@ from pyspark.sql.functions import col, sum as _sum, max as _max, date_sub
 
 # COMMAND ----------
 
-catalog_base_nm = spark.conf.get("catalog_base_nm")
+catalog_base_nm = spark.conf.get("catalog")
 env = spark.conf.get("env")
 
 # COMMAND ----------
@@ -32,7 +32,7 @@ env = spark.conf.get("env")
 )
 def bronze_orders():
     """Ingest raw orders data."""
-    return spark.table(f"{catalog_base_nm}_{env}.poc.orders")
+    return spark.table(f"{catalog_base_nm}.poc.orders")
 
 
 @dlt.table(
@@ -45,7 +45,7 @@ def bronze_orders():
 )
 def bronze_lineitem():
     """Ingest raw lineitem data."""
-    return spark.table(f"{catalog_base_nm}_{env}.poc.lineitem")
+    return spark.table(f"{catalog_base_nm}.poc.lineitem")
 
 
 @dlt.table(
@@ -58,7 +58,7 @@ def bronze_lineitem():
 )
 def bronze_part():
     """Ingest raw part data."""
-    return spark.table(f"{catalog_base_nm}_{env}.poc.part")
+    return spark.table(f"{catalog_base_nm}.poc.part")
 
 # COMMAND ----------
 
