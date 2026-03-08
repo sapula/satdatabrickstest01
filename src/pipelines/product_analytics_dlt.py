@@ -1,4 +1,11 @@
 # Databricks notebook source
+# /// script
+# [tool.databricks.environment]
+# environment_version = "1"
+# dependencies = [
+#   "-r /Workspace/Users/b46033f9-1344-49b6-b99a-cdd225f309e6/.bundle/satdatabrickstest01/dev/files/requirements.txt",
+# ]
+# ///
 # MAGIC %md
 # MAGIC # Product Analytics DLT Pipeline
 # MAGIC
@@ -8,7 +15,7 @@
 # COMMAND ----------
 
 import dlt
-from pyspark.sql.functions import col, sum as _sum, max as _max, date_sub
+from pyspark.sql.functions import col, sum as _sum, max as _max, date_sub,date_add,to_date
 from pyspark.sql.functions import lit
 
 # COMMAND ----------
@@ -128,7 +135,7 @@ def gold_top_selling_products_last_30_days():
     max_date = max_date_df.collect()[0]["max_date"]
 
     # Calculate 30 days ago
-    cutoff_date = date_sub(lit(max_date), -30)
+    cutoff_date = date_add(to_date(lit(max_date)), -30)
 
     # Filter and aggregate
     result = (
