@@ -135,7 +135,7 @@ def gold_top_selling_products_last_30_days():
     max_date = max_date_df.collect()[0]["max_date"]
 
     # Calculate 30 days ago
-    cutoff_date = date_add(to_date(max_date), -30)
+    cutoff_date = date_sub(to_date(lit(max_date)), 30)
 
     # Filter and aggregate
     result = (
