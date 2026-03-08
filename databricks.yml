@@ -15,7 +15,7 @@ variables:
     description: "Schema name"
     default: poc
   notification_email:
-    default: pula.sateesh@gmail.com
+    default: "pula.sateesh@gmail.com"
 
 # Deployment targets
 targets:
@@ -28,7 +28,6 @@ targets:
     variables:
       catalog: tpccopy001_dev
       schema: poc
-      notification_email: ${var.notification_email}
 
   # Staging environment
   staging:
