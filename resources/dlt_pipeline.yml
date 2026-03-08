@@ -1,43 +1,24 @@
 # DLT Pipeline Configuration
 resources:
-  pipelines:
+  jobs:
     analytics_dlt_pipeline:
-      name: "${bundle.environment}_analytics_pipeline"
-      target: "${var.catalog}_${bundle.environment}.${var.schema}"
+      name: analytics_dlt_pipeline
+      tasks:
+        - task_key:  analytics_dlt_pipeline_task
+          notebook_task:
+             notebook_path: ../src/pipelines/product_analytics_dlt.py
+             base_parameters:
+              catalog_base_nm: ${var.catalog}
+              schema: ${var.schema}           
 
-      # Pipeline configuration
-      libraries:
-        - notebook:
-            path: ../src/pipelines/product_analytics_dlt.py
+    # Serverless compute
+    serverless: "true"
 
-      # Serverless compute
-      serverless: true
+    # Development vs Production settings
+    development: ${bundle.target == 'dev'}
+    continuous: "false"
 
-      # Development vs Production settings
-      development: ${bundle.target == 'dev'}
-      continuous: false
 
-      # Channel (preview or current)
-      channel: CURRENT
 
-      # Edition (CORE, PRO, ADVANCED)
-      edition: ADVANCED
-
-      # Email notifications
-      notifications:
-        - email_recipients:
-            - ${var.notification_email}
-          alerts:
-            - on-update-failure
-            - on-update-fatal-failure
-            - on-flow-failure
-
-      # Catalog settings
-      catalog: ${var.catalog}_${bundle.environment}
-
-      # Photon enabled
-      photon: true
-
-      # Data quality expectations
-      configuration:
-        pipeline.deployment.kind: "INCREMENTAL"
+    # Catalog settings
+    catalog: ${var.catalog}_${bundle.environment}
