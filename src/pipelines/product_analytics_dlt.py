@@ -12,8 +12,8 @@ from pyspark.sql.functions import col, sum as _sum, max as _max, date_sub
 
 # COMMAND ----------
 
-catalog_base_nm = dbutils.widgets.text("catalog_base_nm","tpccopy001")
-env = dbutils.widgets.text("env", "dev")
+catalog_base_nm = spark.conf.get("catalog_base_nm")
+env = spark.conf.get("env")
 
 # COMMAND ----------
 
