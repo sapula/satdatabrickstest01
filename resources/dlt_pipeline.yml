@@ -10,16 +10,8 @@ resources:
         - notebook:
             path: ../src/pipelines/product_analytics_dlt.py
 
-      # Cluster configuration
-      clusters:
-        - label: default
-          node_type_id: Standard_D4ds_v5
-          spark_version: 17.3.x-scala2.13
-          autotermination_minutes: 5
-          autoscale:
-            min_workers: 1 # Minimum workers
-            max_workers: 5 # Maximum workers
-
+      # Serverless compute
+      serverless: true
 
       # Development vs Production settings
       development: ${bundle.target == 'dev'}
