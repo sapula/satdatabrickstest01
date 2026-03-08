@@ -32,7 +32,7 @@ resources:
       # Email notifications
       notifications:
         - email_recipients:
-            - pula.sateesh@gmail.com
+            - ${var.notification_email}
           alerts:
             - on-update-failure
             - on-update-fatal-failure
